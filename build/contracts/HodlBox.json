@@ -1,0 +1,296 @@
+{
+  "contract_name": "HodlBox",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "hodlTillBlock",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "releaseTheHodl",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "hodler",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "hodlCountdown",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "hodling",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "isDeholdable",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "withdrawn",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_blocks",
+          "type": "uint256"
+        }
+      ],
+      "payable": true,
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "_isReleased",
+          "type": "bool"
+        },
+        {
+          "indexed": false,
+          "name": "_onBlock",
+          "type": "uint256"
+        }
+      ],
+      "name": "HodlReleased",
+      "type": "event"
+    }
+  ],
+  "unlinked_binary": "0x606060405260405160208061039283398101604052515b600034116100245760006000fd5b60018054600160a060020a03191633600160a060020a031617905560028054340190554381016000556003805460ff191690555b505b610329806100696000396000f300606060405236156100675763ffffffff60e060020a6000350416630c8b29ae81146100695780632b1e50161461008b5780633bc58532146100af57806377a1ec4b146100db5780637844ce81146100fd578063bc7e8d3c1461011f578063c80ec52214610143575bfe5b341561007157fe5b610079610167565b60408051918252519081900360200190f35b341561009357fe5b61009b61016d565b604080519115158252519081900360200190f35b34156100b757fe5b6100bf610283565b60408051600160a060020a039092168252519081900360200190f35b34156100e357fe5b610079610292565b60408051918252519081900360200190f35b341561010557fe5b6100796102b2565b60408051918252519081900360200190f35b341561012757fe5b61009b6102b8565b604080519115158252519081900360200190f35b341561014b57fe5b61009b6102d4565b604080519115158252519081900360200190f35b60005481565b600154600090819033600160a060020a0390811691161461018e5760006000fd5b60005443101561019e5760006000fd5b60035460ff16156101af5760006000fd5b600254600090116101c05760006000fd5b604080516001815243602082015281516000805160206102de833981519152929181900390910190a150600254600081111561027a57600060028190556003805460ff1916600190811790915554604051600160a060020a039091169183156108fc02918491818181858888f1935050505015156102505760028190556003805460ff191690556000915061027f565b604080516001815243602082015281516000805160206102de833981519152929181900390910190a15b600191505b5090565b600154600160a060020a031681565b60008054438082039190106102aa576000915061027f565b8091505b5090565b60025481565b60006000544310156102cc575060006102d0565b5060015b5b90565b60035460ff16815600bb8fa5b678736766b745b36c284f6afb63231ff89482e0b62c662cdfa55f113da165627a7a72305820cf7100d1df3b447cba50c9ee2d9772c69804fa283682a10f9aa2ecb4a1b318c80029",
+  "networks": {
+    "1498347477728": {
+      "events": {},
+      "links": {},
+      "address": "0x2f0a4450accdc146f93a3bc58e960efb37a3bd34",
+      "updated_at": 1498349628227
+    },
+    "1498349846629": {
+      "events": {},
+      "links": {},
+      "address": "0x4a1e64250514cf4a8a81d4d3d53f2e63c5e1b617",
+      "updated_at": 1498350990220
+    },
+    "1498362440381": {
+      "events": {},
+      "links": {},
+      "address": "0x8c4ad74b5f5bfe1b3747f7b236689a7c86f707dc",
+      "updated_at": 1498364083107
+    },
+    "1498364540783": {
+      "events": {},
+      "links": {},
+      "address": "0x26a30f4884acee3237d43eab7e3d3d70bc3628f5",
+      "updated_at": 1498364682076
+    },
+    "1498365444757": {
+      "events": {},
+      "links": {},
+      "address": "0x5bab72b63bf38fa9e155dba7e5bdeebddb94c1e1",
+      "updated_at": 1498365485091
+    },
+    "1498365693763": {
+      "events": {},
+      "links": {},
+      "address": "0x5bab72b63bf38fa9e155dba7e5bdeebddb94c1e1",
+      "updated_at": 1498365719824
+    },
+    "1498369442679": {
+      "events": {},
+      "links": {},
+      "address": "0x5bab72b63bf38fa9e155dba7e5bdeebddb94c1e1",
+      "updated_at": 1498370319412
+    },
+    "1498371964941": {
+      "events": {},
+      "links": {},
+      "address": "0x5bab72b63bf38fa9e155dba7e5bdeebddb94c1e1",
+      "updated_at": 1498372028488
+    },
+    "1498372299442": {
+      "events": {
+        "0xbb8fa5b678736766b745b36c284f6afb63231ff89482e0b62c662cdfa55f113d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_isReleased",
+              "type": "bool"
+            },
+            {
+              "indexed": false,
+              "name": "_onBlock",
+              "type": "uint256"
+            }
+          ],
+          "name": "HodlReleased",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x0d0020758c4f1f85b2b89322ff01a67ce30fb0f8",
+      "updated_at": 1498374794604
+    },
+    "1498375093428": {
+      "events": {
+        "0xbb8fa5b678736766b745b36c284f6afb63231ff89482e0b62c662cdfa55f113d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_isReleased",
+              "type": "bool"
+            },
+            {
+              "indexed": false,
+              "name": "_onBlock",
+              "type": "uint256"
+            }
+          ],
+          "name": "HodlReleased",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xbbdfd2b92584985bbdf84137a9ee68cee1fcc291",
+      "updated_at": 1498375276043
+    },
+    "1498375783214": {
+      "events": {
+        "0xbb8fa5b678736766b745b36c284f6afb63231ff89482e0b62c662cdfa55f113d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_isReleased",
+              "type": "bool"
+            },
+            {
+              "indexed": false,
+              "name": "_onBlock",
+              "type": "uint256"
+            }
+          ],
+          "name": "HodlReleased",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x9111f4ceb7d327bd702098418be6b1dcb13dc0c2",
+      "updated_at": 1498376450145
+    },
+    "1498376797589": {
+      "events": {
+        "0xbb8fa5b678736766b745b36c284f6afb63231ff89482e0b62c662cdfa55f113d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_isReleased",
+              "type": "bool"
+            },
+            {
+              "indexed": false,
+              "name": "_onBlock",
+              "type": "uint256"
+            }
+          ],
+          "name": "HodlReleased",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x8c4ad74b5f5bfe1b3747f7b236689a7c86f707dc",
+      "updated_at": 1498377395396
+    },
+    "1498377467698": {
+      "events": {
+        "0xbb8fa5b678736766b745b36c284f6afb63231ff89482e0b62c662cdfa55f113d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_isReleased",
+              "type": "bool"
+            },
+            {
+              "indexed": false,
+              "name": "_onBlock",
+              "type": "uint256"
+            }
+          ],
+          "name": "HodlReleased",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x5bab72b63bf38fa9e155dba7e5bdeebddb94c1e1",
+      "updated_at": 1498377493214
+    }
+  },
+  "schema_version": "0.0.5",
+  "updated_at": 1498377493214
+}
