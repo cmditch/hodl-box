@@ -1,0 +1,10 @@
+{
+  "name": "hodl-box",
+  "version": "0.0.1",
+  "description": "This is gentlemen! HODLLLLL",
+  "scripts": {
+    "rpc": "testrpc -s 1 -b 5"
+  },
+  "author": "Hodor 'Hold the Door' Hodl the 3rd",
+  "license": "MIT"
+}

@@ -11,41 +11,31 @@ contract HodlBox {
   uint public hodling;
   bool public withdrawn;
 
-  event HodlReleased(bool _isReleased, uint _onBlock);
+  event HodlReleased(bool _isReleased);
 
   function HodlBox(uint _blocks) payable {
     if (msg.value <= 0) throw;
     hodler = msg.sender;
-    hodling += msg.value;
+    hodling = msg.value;
     hodlTillBlock = block.number + _blocks;
     withdrawn = false;
   }
 
-  function releaseTheHodl() returns (bool) {
+  function () payable {
+    msg.sender.transfer(msg.value);
+  }
+
+  function releaseTheHodl() {
     // Only the contract creator can release funds from their HodlBox,
     // and only after the defined number of blocks has passed.
     if (msg.sender != hodler) throw;
     if (block.number < hodlTillBlock) throw;
     if (withdrawn) throw;
     if (hodling <= 0) throw;
-    HodlReleased(true, block.number);
-
-    var withdrawAmount = hodling;
-
-    if (withdrawAmount > 0) {
-      // It is important to set this to zero because the recipient
-      // can call this function again as part of the receiving call
-      // before `send` returns. See comment at bottom.
-      hodling = 0;
-      withdrawn = true;
-      if (!hodler.send(withdrawAmount)) {
-        hodling = withdrawAmount;
-        withdrawn = false;
-        return false;
-      }
-      HodlReleased(true, block.number);
-    }
-    return true;
+    withdrawn = true;
+    hodling = 0;
+    HodlReleased(true);
+    selfdestruct(hodler);
   }
 
   // constant functions do not mutate state
@@ -64,6 +54,7 @@ contract HodlBox {
       return true;
     }
   }
+
 
 }
 

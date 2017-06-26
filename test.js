@@ -33,3 +33,8 @@ balances = () => {
   }
 }
 balances()
+
+
+
+web3.eth.getBalance(web3.eth.coinbase)
+web3.eth.sendTransaction({from: web3.eth.coinbase, to: '0xbbdfd2b92584985bbdf84137a9ee68cee1fcc291', amount: 1000000000000000000 })
