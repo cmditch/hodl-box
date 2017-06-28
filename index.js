@@ -9,11 +9,12 @@ window.addEventListener('load', function() {
     // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
     window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
   }
-  setTimeout(startApp(), 50);
+  setTimeout( () => startApp(), 500 );
 });
 
 
 startApp = () => {
+  myCoinbase = web3.toChecksumAddress(web3.eth.coinbase)
   // Identify the network
   web3.version.getNetwork((err, netId) => {
     switch (netId) {
@@ -30,7 +31,7 @@ startApp = () => {
         console.log('This is an unknown network.')
     }
     // Now you can start your app & access web3 freely:
-    console.log("App almost started...")
-    $(".coinbase").text(web3.eth.coinbase)
+    console.log("Hodl started...")
+    $(".coinbase").text(web3.toChecksumAddress(web3.eth.coinbase))
   });
 }
