@@ -10,7 +10,7 @@
       }
       .box {
         border: 2px solid grey;
-        height: 60em;
+        height: 50em;
         max-width: 25em;
         margin: 0 auto;
         border-radius: 65px;
@@ -24,6 +24,7 @@
       }
       #amount {
         width: 30%;
+        text-align: center;
       }
       .seperator {
         padding: 35px;
@@ -43,13 +44,17 @@
       <div class="box">
         <h2>HodlBox</h2>
         <div class="seperator"></div>
-        <p>Contract Address</p>
-        <input id="contract" type="text" />
+        <!-- <p>Contract Address</p>
+        <input id="contract" type="text" /> -->
         <p>Amount to Hodl<br />(ETH)</p>
         <input id="amount" type="text" />
+        <br  />
+        <button class="button button-primary" onClick="deployHodlBox()">Hodlize!</button>
         <div class="seperator"></div>
         <strong>My Address:</strong>
         <p class="coinbase">Loading...</p>
+        <strong>HodlBox Address:</strong>
+        <p class="hodlBoxAddress">None deployed</p>
         <div class="seperator"></div>
         <div id="hodl"></div>
         <p>Hodor Hodls</p>
