@@ -12,6 +12,7 @@ contract HodlBox {
   bool public withdrawn;
 
   event HodlReleased(bool _isReleased);
+  event Hodling(bool _isCreated);
 
   function HodlBox(uint _blocks) payable {
     if (msg.value <= 0) throw;
@@ -19,6 +20,7 @@ contract HodlBox {
     hodling = msg.value;
     hodlTillBlock = block.number + _blocks;
     withdrawn = false;
+    Hodling(true);
   }
 
   function () payable {
@@ -34,7 +36,13 @@ contract HodlBox {
     if (hodling <= 0) throw;
     withdrawn = true;
     hodling = 0;
+
+    // Send event to notifiy UI
     HodlReleased(true);
+
+    // Convenient way to transfer contract funds
+    // Saves on gas too, both on contract creation and function execution.
+    // A clear incentive to "clean up after yourself" on the blockchain.
     selfdestruct(hodler);
   }
 
@@ -54,7 +62,6 @@ contract HodlBox {
       return true;
     }
   }
-
 
 }
 

@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <style>
+      body {
+        text-align: center;
+      }
+      .box {
+        border: 2px solid grey;
+        height: 60em;
+        max-width: 25em;
+        margin: 0 auto;
+        border-radius: 65px;
+        margin-top: 55px;
+        padding: 40px;
+        min-width: 300px;
+      }
+      #contract {
+        width: 90%;
+        font-size: .87em;
+      }
+      #amount {
+        width: 30%;
+      }
+      .seperator {
+        padding: 35px;
+      }
+      #hodl {
+        background-image: url("https://altcoinspekulant.files.wordpress.com/2016/02/ip-bitcointalk-org.jpg");
+        background-size: 256px 150px;
+        background-repeat: no-repeat;
+        height: 150px;
+        width: 256px;
+        margin: 0px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">
+        <h2>HodlBox</h2>
+        <div class="seperator"></div>
+        <p>Contract Address</p>
+        <input id="contract" type="text" />
+        <p>Amount to Hodl<br />(ETH)</p>
+        <input id="amount" type="text" />
+        <div class="seperator"></div>
+        <strong>My Address:</strong>
+        <p class="coinbase">Loading...</p>
+        <div class="seperator"></div>
+        <div id="hodl"></div>
+        <p>Hodor Hodls</p>
+      </div>
+    </div>
+  </body>
+  <script src="index.js"></script>
+</html>
