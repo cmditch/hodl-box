@@ -15,7 +15,6 @@ contract HodlBox {
   event Hodling(bool _isCreated);
 
   function HodlBox(uint _blocks) payable {
-    if (msg.value <= 0) throw;
     hodler = msg.sender;
     hodling = msg.value;
     hodlTillBlock = block.number + _blocks;
@@ -23,8 +22,8 @@ contract HodlBox {
     Hodling(true);
   }
 
-  function () payable {
-    msg.sender.transfer(msg.value);
+  function deposit() payable {
+    hodling += msg.value;
   }
 
   function releaseTheHodl() {

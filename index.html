@@ -2,12 +2,17 @@
   <head>
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <style>
       body {
         text-align: center;
       }
+
+      p {
+        margin-bottom: 5px;
+      }
+
       .box {
         border: 2px solid grey;
         height: 50em;
@@ -18,17 +23,31 @@
         padding: 40px;
         min-width: 300px;
       }
+
+      .loading {
+        font-weight: bold;
+        color: firebrick;
+      }
+
+      .success {
+        font-weight: bold;
+        color: mediumseagreen;
+      }
+
       #contract {
         width: 90%;
         font-size: .87em;
       }
-      #amount {
+
+      #textInput {
         width: 30%;
         text-align: center;
       }
+
       .seperator {
         padding: 35px;
       }
+
       #hodl {
         background-image: url("https://altcoinspekulant.files.wordpress.com/2016/02/ip-bitcointalk-org.jpg");
         background-size: 256px 150px;
@@ -37,6 +56,7 @@
         width: 256px;
         margin: 0px auto;
       }
+
     </style>
   </head>
   <body>
@@ -44,18 +64,22 @@
       <div class="box">
         <h2>HodlBox</h2>
         <div class="seperator"></div>
-        <!-- <p>Contract Address</p>
-        <input id="contract" type="text" /> -->
-        <p>Amount to Hodl<br />(ETH)</p>
-        <input id="amount" type="text" />
-        <br  />
-        <button class="button button-primary" onClick="deployHodlBox()">Hodlize!</button>
+        <div id="hodlForm">
+          <p id="formTitle">How long hodling?<br />(Blocks)</p>
+          <input id="textInput" type="text" />
+          <br  />
+          <button id="contractButton" class="button button-primary" onClick="deployHodlBox()">Create HodlBox!</button>
+        </div>
         <div class="seperator"></div>
         <strong>My Address:</strong>
         <p class="coinbase">Loading...</p>
+        <p class="coinbaseBalance">0 Eth</p>
+        <br />
         <strong>HodlBox Address:</strong>
-        <p class="hodlBoxAddress">None deployed</p>
-        <div class="seperator"></div>
+        <p class="hodlBoxAddress">No HodlBoxes Deployed</p>
+        <p id="hodlBoxHodling">0 Eth</p>
+        <p id="hodlBoxCountdown">--</p>
+        <br />
         <div id="hodl"></div>
         <p>Hodor Hodls</p>
       </div>
