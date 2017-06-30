@@ -15,7 +15,7 @@
 
       .box {
         border: 2px solid grey;
-        height: 50em;
+        height: 40em;
         max-width: 25em;
         margin: 0 auto;
         border-radius: 65px;
@@ -63,21 +63,16 @@
     <div class="container">
       <div class="box">
         <h2>HodlBox</h2>
-        <div class="seperator"></div>
         <div id="hodlForm">
           <p id="formTitle">How long hodling?<br />(Blocks)</p>
           <input id="textInput" type="text" />
           <br  />
           <button id="contractButton" class="button button-primary" onClick="deployHodlBox()">Create HodlBox!</button>
         </div>
-        <div class="seperator"></div>
-        <strong>My Address:</strong>
-        <p class="coinbase">Loading...</p>
-        <p class="coinbaseBalance">0 Eth</p>
+        <div>My Balance:</div>
+        <p class="coinbaseBalance" title="">0 Eth</p>
         <br />
-        <strong>HodlBox Address:</strong>
-        <p class="hodlBoxAddress">No HodlBoxes Deployed</p>
-        <p id="hodlBoxHodling">0 Eth</p>
+        <strong><p id="hodlBoxStatus" title="">0 Eth hodled</p></strong>
         <p id="hodlBoxCountdown">--</p>
         <br />
         <div id="hodl"></div>
