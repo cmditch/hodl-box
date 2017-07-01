@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "This is gentlemen! HODLLLLL",
   "scripts": {
-    "rpc": "testrpc -s 1 -b 5 -i 42",
+    "rpc": "testrpc -s 1 -b 4 -i 42",
     "web": "python -m SimpleHTTPServer 8000"
   },
   "author": "Hodor 'Hold the Door' Hodl the 3rd",

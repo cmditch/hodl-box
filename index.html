@@ -35,6 +35,12 @@
         color: mediumseagreen;
       }
 
+
+
+      #hodlForm {
+        height: 180px;
+      }
+
       #contract {
         width: 90%;
         font-size: .87em;
@@ -58,6 +64,16 @@
         margin: 0px auto;
       }
 
+      .hodlHard {
+        background-image: url("http://i.imgur.com/ibOTwn3.jpg");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        height: 300px;
+        width: 200px;
+        margin: 0px auto;
+        align-content: center;
+      }
+
     </style>
   </head>
   <body>
@@ -65,8 +81,9 @@
       <div class="box">
         <h2>HodlBox</h2>
         <div id="hodlForm">
-          <p id="formTitle">How long hodling?<br />(Blocks)</p>
-          <input id="textInput" type="text" />
+          <br />
+          <input id="hodlAmount" type="text" placeholder="Value in Eth"/>
+          <input id="blockCount" type="text" placeholder="Time in Blocks"/>
           <br  />
           <button id="contractButton" class="button button-primary" onClick="deployHodlBox()">Create HodlBox!</button>
         </div>

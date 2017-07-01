@@ -26,7 +26,7 @@ startApp = () => {
 
   updateCoinbaseBalance = (address) => {
     web3.eth.getBalance(address, (e,r) => {
-      myCoinbaseBalance = web3.fromWei(r.toString(), 'ether')
+      myCoinbaseBalance = parseFloat(web3.fromWei(r.toString(), 'ether')).toFixed(2)
       $(".coinbaseBalance").text(myCoinbaseBalance + " Eth");
     });
   }
@@ -44,33 +44,31 @@ startApp = () => {
 
   hodlBoxContract = web3.eth.contract(hodlBoxAbi);
 
-  hodlDepositHtml = '<p id="formTitle">How much hodling?<br />(Eth)</p> <input id="textInput" type="text" /> <br  /> <button id="depositButton" class="button button-disabled" onClick="depositHodlBox()" disabled>Hodl!</button>'
-  deHodlButton = '<div>You can de-Hodl now, be weary of your emotions.<br /><button class="button button-primary" onClick="deHodl()">de-Hodlize!</button>'
+  deHodlButton = '<div>You can de-Hodl now, be weary of your emotions.<br /><button id="deHodlButton" class="button button-primary" onClick="deHodl()">de-Hodlize!</button>'
 
   deployHodlBox = () => {
-    blocks = $("#textInput").val();
+    blocks = $("#blockCount").val();
+    value = $("#hodlAmount").val();
     $("#hodlBoxCountdown").text("Calculating hodl time...")
     hodlBoxDeploying = hodlBoxContract.new(
        parseInt(blocks),
        {
          from: web3.eth.coinbase,
          data: hodlBoxByteCode,
-         gas: '2700000'
+         gas: '2700000',
+         value: web3.toWei(value, "ether")
        }, function (e, contract){
         console.log(e, contract);
-        $("#hodlForm").html(hodlDepositHtml)
         if (typeof contract.address !== 'undefined') {
            console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
            hodlBoxDeployed = contract;
-           $("#depositButton").removeClass("button-disabled")
-           $("#depositButton").addClass("button-primary")
-           $("#depositButton").removeAttr("disabled")
-           setTimeout( function() { $(".hodlBoxAddress").removeClass("loading success") }, 5000)
+           $("#hodlForm").html("")
+           $("#hodlForm").addClass("hodlHard")
+           updateHodlAmount();
+           updateCoinbaseBalance(myCoinbase);
            setInterval( () => {
              updateCountdown();
-             updateHodlAmount();
-             updateCoinbaseBalance(myCoinbase);
-           }, 2000)
+           }, 3000)
         }
      })
   }; // deployHodlBox
@@ -113,7 +111,13 @@ updateHodlAmount = () => {
 deHodl = () => {
   hodlBoxDeployed.releaseTheHodl.sendTransaction(
     { from: web3.eth.coinbase },
-    (e,r) => console.log(e,r)
+    (e,r) => {
+      console.log("Dehodled complete at tx: " + r)
+      updateHodlAmount();
+      updateCoinbaseBalance(myCoinbase);
+      $("#deHodlButton").removeClass("button-primary")
+      $("#deHodlButton").attr("disabled", "disabled")
+    }
   )
 }
 
