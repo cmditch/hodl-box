@@ -82,15 +82,19 @@ startApp = () => {
     )
   }
 
+  disableForm = () => {
+    $("#hodlBoxCountdown").html(deHodlButton)
+    $("#depositButton").attr("disabled", "disabled")
+    $("#textInput").attr("disabled", "disabled")
+    $("#depositButton").removeClass("button-primary")
+  }
+
   updateCountdown = () => {
     hodlBoxDeployed.hodlCountdown.call((e,r) => {
       // I should be logging errors, but would rather show you poor style as a lesson...?
       blocksRemaining = r.toNumber();
       if(blocksRemaining === 0) {
-        $("#hodlBoxCountdown").html(deHodlButton)
-        $("#depositButton").attr("disabled", "disabled")
-        $("#textInput").attr("disabled", "disabled")
-        $("#depositButton").removeClass("button-primary")
+
       } else if(blocksRemaining != undefined) {
         $("#hodlBoxCountdown").text(blocksRemaining + " blocks of hodling left..." )
       }
