@@ -39,7 +39,7 @@ window.App = {
   },
 
   submitForm: function() {
-    AppState.ethAmount = parseInt($('#ethAmount').val());
+    AppState.ethAmount = parseFloat($('#ethAmount').val());
     AppState.blockCount = parseInt($('#blockCount').val());
     web3Check();
     if (this.formValid()) {
