@@ -1,0 +1,97 @@
+body {
+  text-align: center;
+}
+
+p {
+  margin-bottom: 5px;
+}
+
+.box {
+  border: 2px solid grey;
+  height: 32em;
+  max-width: 20em;
+  margin: 0 auto;
+  border-radius: 65px;
+  margin-top: 55px;
+  padding: 40px;
+  min-width: 300px;
+}
+
+.loading {
+  background-image: url("dashinfinity.gif");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 60px;
+  width: 60px;
+  margin: 0px auto;
+  align-content: center;
+}
+
+.blockCount {
+  font-size: 3em;
+  font-weight: bold;
+}
+
+.success {
+  font-weight: bold;
+  color: mediumseagreen;
+}
+
+#hodlForm {
+  height: 180px;
+}
+
+#contract {
+  width: 90%;
+  font-size: .87em;
+}
+
+#textInput {
+  width: 30%;
+  text-align: center;
+}
+
+.seperator {
+  padding: 35px;
+}
+
+.disabled-button {
+  background-color: grey;
+  color: black;
+  border-width: 0px;
+}
+
+.disabled-button:hover {
+  cursor: no-drop;
+  color: black;
+  background-color: grey;
+}
+
+#hodl {
+  background-image: url("https://cdn.shopify.com/s/files/1/1886/3811/products/mockup-189e1629_1024x1024.png?v=1493836303");
+  background-size: 200px 200px;
+  background-repeat: no-repeat;
+  height: 200px;
+  width: 200px;
+  margin: 0px auto;
+}
+
+.hodlHard {
+  background-image: url("http://i.imgur.com/ibOTwn3.jpg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 300px;
+  width: 200px;
+  margin: 0px auto;
+  align-content: center;
+}
+
+.happyHodor {
+  background-image: url("https://static01.nyt.com/images/2016/05/24/arts/hodor/hodor-facebookJumbo-v2.jpg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 200px;
+  width: 320px;
+  margin: 0px auto;
+  align-content: center;
+}
