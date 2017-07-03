@@ -3,98 +3,33 @@
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
-    <style>
-      body {
-        text-align: center;
-      }
-
-      p {
-        margin-bottom: 5px;
-      }
-
-      .box {
-        border: 2px solid grey;
-        height: 40em;
-        max-width: 25em;
-        margin: 0 auto;
-        border-radius: 65px;
-        margin-top: 55px;
-        padding: 40px;
-        min-width: 300px;
-      }
-
-      .loading {
-        font-weight: bold;
-        color: firebrick;
-      }
-
-      .success {
-        font-weight: bold;
-        color: mediumseagreen;
-      }
-
-
-
-      #hodlForm {
-        height: 180px;
-      }
-
-      #contract {
-        width: 90%;
-        font-size: .87em;
-      }
-
-      #textInput {
-        width: 30%;
-        text-align: center;
-      }
-
-      .seperator {
-        padding: 35px;
-      }
-
-      #hodl {
-        background-image: url("https://altcoinspekulant.files.wordpress.com/2016/02/ip-bitcointalk-org.jpg");
-        background-size: 256px 150px;
-        background-repeat: no-repeat;
-        height: 150px;
-        width: 256px;
-        margin: 0px auto;
-      }
-
-      .hodlHard {
-        background-image: url("http://i.imgur.com/ibOTwn3.jpg");
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        height: 300px;
-        width: 200px;
-        margin: 0px auto;
-        align-content: center;
-      }
-
-    </style>
   </head>
   <body>
     <div class="container">
       <div class="box">
         <h2>HodlBox</h2>
+        <span id="error"></span>
         <div id="hodlForm">
           <br />
-          <input id="hodlAmount" type="text" placeholder="Value in Eth"/>
+          <input id="ethAmount" type="text" placeholder="Value in Eth"/>
+          <br />
           <input id="blockCount" type="text" placeholder="Time in Blocks"/>
           <br  />
-          <button id="contractButton" class="button button-primary" onClick="deployHodlBox()">Create HodlBox!</button>
+          <div id="contractButton">
+            <button class="button button-primary" onClick="App.submitForm()">Create HodlBox!</button>
+          </div>
         </div>
-        <div>My Balance:</div>
-        <p class="coinbaseBalance" title="">0 Eth</p>
+        <br  />
+        <div>My Wallet Balance:</div>
+        <p> <span id="coinbase-balance" title="">0</span> Eth</p>
         <br />
-        <strong><p id="hodlBoxStatus" title="">0 Eth hodled</p></strong>
-        <p id="hodlBoxCountdown">--</p>
-        <br />
-        <div id="hodl"></div>
-        <p>Hodor Hodls</p>
+        <strong>
+          <p><span id="hodlBoxHeld" title="">0</span> eth hodled</p>
+        </strong>
+        <p id="hodlBoxCountdown"></p>
       </div>
     </div>
   </body>
