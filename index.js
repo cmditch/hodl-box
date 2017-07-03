@@ -30,7 +30,7 @@ window.App = {
   formValid: function() {
     amount = AppState.ethAmount
     blocks = AppState.blockCount
-    if ((amount > 0) && (blocks > 0)) {
+    if ((amount > 0.0) && (blocks > 0)) {
       return true;
     } else {
       displayError("Zeros and blank fields are invalid!");
