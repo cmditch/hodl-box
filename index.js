@@ -1,3 +1,4 @@
+
 //  HodlBox
 //  More Hodl, Less Panics
 //
@@ -18,7 +19,7 @@ window.App = {
   },
 
   updateCoinbaseBalance: function() {
-    web3.eth.getBalance(AppState.coinbaseAddress, (e, r) => {
+    web3.eth.getBalance(AppState.coinbaseAddress, (e,r) => {
       logError(e);
       balance = web3.fromWei(r.toNumber(), 'ether')
       AppState.coinbaseBalance = parseFloat(balance).toFixed(2);
@@ -58,34 +59,32 @@ window.App = {
     value = AppState.ethAmount;
     self = this;
     AppState.hodlBoxContract.new(
-      blocks, // First and only argument to contract constructor
-      {
-        from: AppState.coinbaseAddress,
-        data: HodlBox.bytecode,
-        gas: '2700000',
-        value: web3.toWei(value, "ether")
-      },
+       blocks, // First and only argument to contract constructor
+       {
+         from: AppState.coinbaseAddress,
+         data: HodlBox.bytecode,
+         gas: '2700000',
+         value: web3.toWei(value, "ether")
+       },
       (e, contract) => {
         logError(e);
         if (typeof contract.address !== 'undefined') {
-          console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
-          AppState.hodlBoxDeployed = contract;
-          self.changeHodlForm();
-          self.updateCoinbaseBalance();
-          self.updateHodlBoxBalance();
-          self.blockCountdown()
+           console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
+           AppState.hodlBoxDeployed = contract;
+           self.changeHodlForm();
+           self.updateCoinbaseBalance();
+           self.updateHodlBoxBalance();
+           self.blockCountdown()
         }
-      });
+     });
   },
 
   updateHodlBoxBalance: function() {
-    AppState.hodlBoxDeployed.hodling.call((e, r) => {
+    AppState.hodlBoxDeployed.hodling.call( (e,r) => {
       logError(e);
       AppState.hodlBoxBalance = web3.fromWei(r.toNumber(), "ether");
       hodling = AppState.hodlBoxBalance;
-      if (hodling != undefined) {
-        $("#hodlBoxHeld").text(hodling)
-      };
+      if ( hodling != undefined) { $("#hodlBoxHeld").text(hodling) };
     });
   },
 
@@ -95,36 +94,33 @@ window.App = {
   },
 
   hodlCountdown: function() {
-    AppState.hodlBoxDeployed.hodlCountdown.call((e, r) => {
+    AppState.hodlBoxDeployed.hodlCountdown.call( (e,r) => {
       logError(e);
       AppState.blocksRemaining = r.toNumber();
       blocksRemaining = AppState.blocksRemaining;
       if (blocksRemaining === 0) {
         $("#hodlBoxCountdown").html(AppState.releaseHodlButton);
         clearInterval(AppState.countdown);
-      } else if (blocksRemaining != undefined) {
-        $("#hodlBoxCountdown").html("<div><div class='blockCount'>" + blocksRemaining + "</div>blocks of hodling left...</div>")
+      } else if(blocksRemaining != undefined) {
+        $("#hodlBoxCountdown").html("<div><div class='blockCount'>" + blocksRemaining + "</div>blocks of hodling left...</div>" )
       }
     });
   },
 
   blockCountdown: function() {
     this.hodlCountdown();
-    AppState.countdown = setInterval(() => {
-      this.hodlCountdown()
-    }, 3000);
+    AppState.countdown = setInterval( () => { this.hodlCountdown() }, 3000);
   },
 
   releaseTheHodl: function() {
     self = this;
-    AppState.hodlBoxDeployed.releaseTheHodl.sendTransaction({
-        from: AppState.coinbaseAddress,
-        gas: '50000'
-      },
-      (e, r) => {
+    AppState.hodlBoxDeployed.releaseTheHodl.sendTransaction(
+      { from: AppState.coinbaseAddress },
+      (e,r) => {
         logError(e);
         console.log("Dehodled complete at tx: " + r);
         $("#releaseHodlText").text("");
+        $('#hodlBoxCountdown').append('<div class="loading"></div>');
         $("#releaseHodlButton").text("Waiting for DeHodl...");
         $("#releaseHodlButton").removeClass("button-primary").addClass("disabled-button");
         $("#releaseHodlButton").attr("disabled", "disabled");
@@ -135,11 +131,11 @@ window.App = {
 
   watchHodlReleaseEvent: function() {
     self = this;
-    releaseEvent = AppState.hodlBoxDeployed.HodlReleased({
-      _isReleased: true
-    });
-    releaseEvent.watch((e, r) => {
+    releaseEvent = AppState.hodlBoxDeployed.HodlReleased({_isReleased: true});
+    releaseEvent.watch( (e,r) => {
       console.log("DeHodled!")
+      $('.loading').removeClass('loading');
+      $('#hodling').html('');
       $("#releaseHodlButton").text("DeHodl Complete!!");
       $("#hodlForm").removeClass("hodlHard").addClass("happyHodor");
       self.updateCoinbaseBalance();
@@ -169,22 +165,12 @@ window.AppState = {
 // Utility Functions
 displayError = e => {
   $("#error").text(e);
-  setTimeout(() => $("#error").text(""), 5000);
+  setTimeout( () => $("#error").text(""), 5000 );
 }
 
-logError = e => {
-  if (e != undefined || null) {
-    console.log(e)
-  }
-}
+logError = e => { if (e != undefined || null) { console.log(e) } }
 
-web3Check = () => {
-  try {
-    console.log(web3.eth.coinbase + " coinbase found")
-  } catch (e) {
-    displayError("RPC not found, Allow scripts using shield icon in address bar.")
-  }
-}
+web3Check = () => { try {console.log(web3.eth.coinbase + " coinbase found")} catch (e) {displayError("RPC not found, Allow scripts using shield icon in address bar.")} }
 
 
 // Contract Object
@@ -207,5 +193,5 @@ window.addEventListener('load', function() {
     // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
     window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
   }
-  setTimeout(() => App.startApp(), 300);
+  setTimeout( () => App.startApp(), 300 );
 });
