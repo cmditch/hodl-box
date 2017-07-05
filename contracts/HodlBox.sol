@@ -6,35 +6,33 @@ pragma solidity ^0.4.11;
 
 contract HodlBox {
 
-  struct Hodler {
+  /*struct Hodler {
     uint amount;
     uint releaseOnBlock;
-  }
+  }*/
 
-  mapping (address => Hodler) public hodlers;
+  mapping (address => uint) public hodlAmount;
+  mapping (address => uint) public hodlTillBlock;
 
   event HodlReleased(address indexed hodler, uint amount);
 
   function deposit(uint hodlForBlocks) payable {
-    Hodler h = hodlers[msg.sender];
-    if (h.amount > 0) throw;
-    h.amount = msg.value;
-    h.releaseOnBlock = (block.number + hodlForBlocks);
+    if (hodlAmount[msg.sender] > 0) throw;
+    hodlAmount[msg.sender] = msg.value;
+    hodlTillBlock[msg.sender] = (block.number + hodlForBlocks);
   }
 
   function releaseTheHodl() {
-    Hodler h = hodlers[msg.sender];
-    if (h.amount <= 0) throw;
-    if (block.number < h.releaseOnBlock) throw;
-    var hodlAmount = h.amount;
-    hodlers[msg.sender].amount = 0; // Update balance before sending ETH to avoid DAO type exploit.
-    msg.sender.transfer(hodlAmount);
-    HodlReleased(msg.sender, h.amount);
+    if (hodlAmount[msg.sender] <= 0) throw;
+    if (hodlTillBlock[msg.sender] > block.number) throw;
+    var dehodling = hodlAmount[msg.sender];
+    hodlAmount[msg.sender] = 0; // Update balance before sending ETH to avoid DAO type exploit.
+    msg.sender.transfer(dehodling);
+    HodlReleased(msg.sender, dehodling);
   }
 
   function hodlCountdown() constant returns (uint) {
-    Hodler h = hodlers[msg.sender];
-    var hodlCount = h.releaseOnBlock - block.number;
+    var hodlCount = hodlTillBlock[msg.sender] - block.number;
     if (hodlCount <= 0) {
       return 0;
     }
